@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Generative Action Synthesis</title>
+<meta name="description" content="Supplementary videos for Generative Action Synthesis (GAS): synthesizing joint-command residuals for kinematic-only dexterous-hand demonstrations from teleoperation data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --curtain: #000000;
+  --table: #ffffff;
+  --paper: #f3f3f1;
+  --ink: #000000;
+  --ink-soft: #5c5c58;
+  --hair: #d8d8d3;
+  --state: #9a9a94;
+  --gas: #d5e300;
+  --serif: "Newsreader", "Iowan Old Style", "Times New Roman", Georgia, serif;
+  --sans: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --max: 1180px;
+  --gutter: 24px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { color-scheme: light; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gas); outline-offset: 3px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Hero band: the black curtain behind the robot */
+.hero { background: var(--curtain); color: var(--table); padding-bottom: 48px; }
+.topbar {
+  display: flex; align-items: baseline; justify-content: flex-end; gap: 24px;
+  padding: 22px 0 0;
+}
+.topbar nav { display: flex; gap: 22px; flex-wrap: wrap; font-size: 0.95rem; }
+.topbar nav a { text-decoration: none; color: #cfcfc9; }
+.topbar nav a:hover { color: var(--table); }
+
+.title { padding: 72px 0 44px; }
+.title h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+.title .sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.35;
+  color: #d9d9d3;
+  margin-top: 20px;
+  max-width: 34em;
+}
+.title .byline { margin-top: 26px; font-size: 0.95rem; color: #a6a6a0; }
+
+.hero-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.hero-pair figure { margin: 0; }
+.hero-pair figcaption {
+  font-size: 0.95rem; font-weight: 500; padding: 10px 0 12px;
+  border-top: 3px solid var(--state);
+}
+.hero-pair figure.is-gas figcaption { border-top-color: var(--gas); }
+
+video {
+  display: block; width: 100%; aspect-ratio: 16 / 9; background: #000;
+  object-fit: cover;
+}
+.hero video { border: 1px solid #2a2a2a; }
+main video { border: 1px solid var(--hair); background: var(--table); }
+main { padding-bottom: 72px; }
+
+/* Prose sections */
+section { padding: 64px 0 24px; }
+.split { display: grid; grid-template-columns: 220px 1fr; gap: 32px 48px; align-items: start; }
+h2 {
+  font-family: var(--serif); font-weight: 500; font-size: 1.85rem; line-height: 1.1; letter-spacing: -0.01em;
+}
+.split h2 { position: sticky; top: 24px; }
+.abstract p {
+  font-family: var(--serif); font-size: 1.22rem; line-height: 1.5; max-width: 34em;
+}
+.abstract p + p { margin-top: 1em; }
+
+/* Comparison tables: task | state as action | GAS */
+.compare { margin-top: 28px; }
+.compare-head, .row {
+  display: grid; grid-template-columns: 200px 1fr 1fr; gap: 20px; align-items: start;
+}
+.compare-head {
+  position: sticky; top: 0; z-index: 2; background: var(--paper);
+  padding-top: 12px;
+}
+.compare-head > div { padding: 10px 0 12px; font-weight: 500; font-size: 0.95rem; border-top: 3px solid transparent; }
+.compare-head .col-state { border-top-color: var(--state); }
+.compare-head .col-gas { border-top-color: var(--gas); }
+.compare-head .col-task { border-top-color: var(--hair); color: var(--ink-soft); font-weight: 400; }
+.row { padding: 22px 0; border-top: 1px solid var(--hair); }
+.row:first-of-type { border-top: 0; }
+.row .task { font-weight: 500; font-size: 1.05rem; line-height: 1.3; }
+.row .task small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.9rem; margin-top: 4px; }
+.row button {
+  display: block;
+  margin-top: 14px; font: inherit; font-size: 0.9rem; color: var(--ink);
+  background: none; border: 1px solid var(--ink); border-radius: 999px; padding: 6px 14px; cursor: pointer;
+}
+.row button:hover { background: var(--ink); color: var(--table); }
+.cell-label { display: none; }
+
+
+@media (max-width: 860px) {
+  .split { grid-template-columns: 1fr; gap: 16px; }
+  .split h2 { position: static; }
+  .compare-head { display: none; }
+  .row { grid-template-columns: 1fr; gap: 14px; }
+  .cell-label {
+    display: block; font-size: 0.9rem; font-weight: 500; padding: 8px 0 8px;
+    border-top: 3px solid var(--state);
+  }
+  .cell-label.is-gas { border-top-color: var(--gas); }
+}
+@media (max-width: 640px) {
+  .hero-pair { grid-template-columns: 1fr; }
+  .title { padding: 48px 0 32px; }
+  section { padding: 48px 0 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <nav aria-label="Sections">
+        <a href="#abstract">Abstract</a>
+        <a href="#replay">Replay</a>
+        <a href="#policies">Policies</a>
+      </nav>
+    </div>
+
+    <div class="title" id="top">
+      <h1>Generative Action Synthesis</h1>
+      <p class="sub">Supplementary Video Results</p>
+      <p class="byline">Anonymous Authors</p>
+    </div>
+
+    <div class="hero-pair">
+      <figure>
+        <video muted loop playsinline controls preload="none" poster="posters/policy/test_tube_state.jpg" data-auto>
+          <source src="videos/policy/test_tube_state.mp4" type="video/mp4">
+        </video>
+        <figcaption>Policy trained on state as action</figcaption>
+      </figure>
+      <figure class="is-gas">
+        <video muted loop playsinline controls preload="none" poster="posters/policy/test_tube_gas.jpg" data-auto>
+          <source src="videos/policy/test_tube_gas.mp4" type="video/mp4">
+        </video>
+        <figcaption>Policy trained on GAS actions</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="abstract">
+    <div class="wrap split">
+      <h2>Abstract</h2>
+      <div class="abstract">
+        <p>For dexterous hands, kinematic demonstrations from motion-capture gloves and DexUMI-style exoskeletons are easier and faster to collect than demonstrations collected via robot teleoperation, but they record only observed hand motion, not the corresponding joint commands. This missing information is crucial during contact, when applying forces to objects or the environment requires joint commands to differ from the hand's observed configuration. Robot teleoperation data directly capture this missing information through the residual between commanded joint targets and observed hand states.</p>
+        <p>In this work, we propose Generative Action Synthesis (GAS), which trains a conditional generative model of these residuals from teleoperation data and uses it to synthesize action labels for kinematic-only demonstrations. For each frame, the model uses past and future visual observations together with observed joint states to sample plausible command residuals for relabeling kinematic-only demonstrations. GAS synthesizes useful actions zero-shot across diverse manipulation tasks beyond its teleoperation training distribution, including mug grasping, towel folding, cap twisting, test tube insertion, USB unplugging, and Rubik's cube manipulation.</p>
+        <p>With these synthesized actions, we train policies for mug grasping, test tube insertion, cap twisting, and towel folding that achieve high success rates and outperform both naive state-as-action baselines and constant heuristic offsets. These results suggest that teleoperation data can provide supervision for converting action-free kinematic demonstrations into useful training data for robot policies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="replay">
+    <div class="wrap">
+      <h2>Action synthesis replay</h2>
+      <div class="compare">
+        <div class="compare-head" aria-hidden="true">
+          <div class="col-task">Task</div>
+          <div class="col-state">State as action</div>
+          <div class="col-gas">GAS</div>
+        </div>
+        <div class="rows" data-group="replay"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="policies">
+    <div class="wrap">
+      <h2>Downstream policy learning</h2>
+      <div class="compare">
+        <div class="compare-head" aria-hidden="true">
+          <div class="col-task">Task</div>
+          <div class="col-state">Policy trained on state as action</div>
+          <div class="col-gas">Policy trained on GAS actions</div>
+        </div>
+        <div class="rows" data-group="policy"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var TASKS = {
+    replay: [
+      { id: 'rubiks_cube',   name: 'Rubik\u2019s cube manipulation' },
+      { id: 'test_tube',     name: 'Test tube insertion' },
+      { id: 'usb_unplug',    name: 'USB unplugging' },
+      { id: 'mug_rim',       name: 'Mug grasping', note: 'by the rim' },
+      { id: 'mug_top',       name: 'Mug grasping', note: 'from the top' },
+      { id: 'towel_folding', name: 'Towel folding' },
+      { id: 'cap_twisting',  name: 'Cap twisting' }
+    ],
+    policy: [
+      { id: 'test_tube',     name: 'Test tube insertion' },
+      { id: 'mug_rim',       name: 'Mug grasping', note: 'by the rim' },
+      { id: 'mug_top',       name: 'Mug grasping', note: 'from the top' },
+      { id: 'towel_folding', name: 'Towel folding' },
+      { id: 'cap_twisting',  name: 'Cap twisting' }
+    ]
+  };
+
+  function videoEl(group, id, variant) {
+    var v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.controls = true;
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    v.preload = 'none';
+    v.poster = 'posters/' + group + '/' + id + '_' + variant + '.jpg';
+    v.dataset.auto = '';
+    var s = document.createElement('source');
+    s.src = 'videos/' + group + '/' + id + '_' + variant + '.mp4';
+    s.type = 'video/mp4';
+    v.appendChild(s);
+    return v;
+  }
+
+  function cell(group, id, variant, label) {
+    var d = document.createElement('div');
+    var l = document.createElement('div');
+    l.className = 'cell-label' + (variant === 'gas' ? ' is-gas' : '');
+    l.textContent = label;
+    d.appendChild(l);
+    d.appendChild(videoEl(group, id, variant));
+    return d;
+  }
+
+  document.querySelectorAll('.rows').forEach(function (container) {
+    var group = container.dataset.group;
+    var labels = group === 'policy'
+      ? ['Policy trained on state as action', 'Policy trained on GAS actions']
+      : ['State as action', 'GAS'];
+    TASKS[group].forEach(function (t) {
+      var row = document.createElement('div');
+      row.className = 'row';
+      var task = document.createElement('div');
+      task.className = 'task';
+      task.textContent = t.name;
+      if (t.note) { var sm = document.createElement('small'); sm.textContent = t.note; task.appendChild(sm); }
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = 'Restart both';
+      task.appendChild(btn);
+      row.appendChild(task);
+      var left = cell(group, t.id, 'state', labels[0]);
+      var right = cell(group, t.id, 'gas', labels[1]);
+      row.appendChild(left);
+      row.appendChild(right);
+      btn.addEventListener('click', function () {
+        row.querySelectorAll('video').forEach(function (v) {
+          v.currentTime = 0;
+          v.play().catch(function () {});
+        });
+      });
+      container.appendChild(row);
+    });
+  });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var videos = document.querySelectorAll('video[data-auto]');
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { v.play().catch(function () {}); }
+        else if (!v.paused) { v.pause(); }
+      });
+    }, { threshold: 0.35 });
+    videos.forEach(function (v) { io.observe(v); });
+  }
+})();
+</script>
+</body>
+</html>
